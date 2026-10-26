@@ -1,0 +1,151 @@
+//Web.sitemap
+
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode url="Pract7.aspx" title="Home"
+      description="Home page of our website">
+
+    <siteMapNode url="clsProp.aspx"
+        title="Page2" description="Page2" />
+
+    <siteMapNode url="Default.aspx"
+        title="Page3" description="Page3" />
+
+    <siteMapNode url="Default2.aspx"
+        title="Page4" description="Page4" />
+
+  </siteMapNode>
+</siteMap>
+
+
+//Pract7.aspx
+
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Pract7.aspx.cs"
+    Inherits="practical7.WebForm1" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Home</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Home">
+            </asp:Label>
+
+            <br /><br />
+
+            <asp:Menu ID="Menu1" runat="server"
+                DataSourceID="SiteMapDataSource1">
+            </asp:Menu>
+
+            <br />
+
+            <asp:SiteMapDataSource ID="SiteMapDataSource1"
+                runat="server">
+            </asp:SiteMapDataSource>
+        </div>
+    </form>
+</body>
+</html>
+
+//Pract7.aspx.cs
+
+using System;
+
+namespace practical7
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
+
+//Default.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="practical7.Default" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Page3</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server"
+                Text="Home > Page3">
+            </asp:Label>
+
+            <br /><br />
+
+            <asp:Menu ID="Menu1" runat="server"
+                DataSourceID="SiteMapDataSource1">
+            </asp:Menu>
+
+            <br /><br />
+
+            <asp:SiteMapDataSource ID="SiteMapDataSource1"
+                runat="server">
+            </asp:SiteMapDataSource>
+        </div>
+    </form>
+</body>
+</html>
+
+// Default.aspx.cs
+
+using System;
+
+namespace practical7
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
+
+//clsProp.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Page2</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:Label ID="Label1" runat="server"
+            Text="Home > Page2">
+        </asp:Label>
+    </form>
+</body>
+</html>
+
+//Default2.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Page4</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:Label ID="Label1" runat="server"
+            Text="Home > Page4">
+        </asp:Label>
+    </form>
+</body>
+</html>
