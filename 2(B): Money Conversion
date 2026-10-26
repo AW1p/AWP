@@ -1,0 +1,16 @@
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter amount in Rupees: ");
+        double rupees = Convert.ToDouble(Console.ReadLine());
+
+        double dollarRate = 0.012;
+        double dollars = rupees * dollarRate;
+
+        Console.WriteLine($"Amount in Dollars: {dollars:F2}");
+    }
+}
