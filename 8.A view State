@@ -1,0 +1,58 @@
+//Pract8.aspx
+
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Pract8.aspx.cs"
+    Inherits="pract8cviewstate.WebForm1" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>ViewState Demo</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server"
+                Text="ViewState Data:"></asp:Label>
+
+            <asp:Label ID="lblStr" runat="server"></asp:Label>
+
+            <br /><br />
+
+            <asp:Button ID="Button1"
+                runat="server"
+                Text="Get Data"
+                OnClick="Button1_Click" />
+        </div>
+    </form>
+</body>
+</html>
+
+//Pract8.aspx.cs
+
+using System;
+
+namespace pract8cviewstate
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                string str = "XYZ";
+
+                if (ViewState["nam"] == null)
+                {
+                    ViewState["nam"] = str;
+                }
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            lblStr.Text = ViewState["nam"].ToString();
+        }
+    }
+}
