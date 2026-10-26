@@ -1,0 +1,139 @@
+//WebForm1.aspx
+
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs"
+    Inherits="practical4a.WebForm1" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Validation Controls</title>
+
+    <script type="text/javascript">
+        function ValidateBtn_OnClick() {
+            return true;
+        }
+
+        function ClientValidate(source, args) {
+            if (args.Value.length == 8)
+                args.IsValid = true;
+            else
+                args.IsValid = false;
+        }
+    </script>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+
+    <asp:Label ID="Label1" runat="server" Text="Your Name" />
+    <br />
+    <asp:TextBox ID="txtName" runat="server" />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+        runat="server" ControlToValidate="txtName"
+        ErrorMessage="Please enter your name." ForeColor="Red" />
+    <br /><br />
+
+    <asp:Label ID="Label2" runat="server" Text="Enter Age" />
+    <br />
+    <asp:TextBox ID="txtAge" runat="server" />
+    <asp:RangeValidator ID="RangeValidator1"
+        runat="server" ControlToValidate="txtAge"
+        Type="Integer" MinimumValue="18" MaximumValue="60"
+        ErrorMessage="Age should be between 18 and 60."
+        ForeColor="Red" />
+    <br /><br />
+
+    <asp:Label ID="Label3" runat="server" Text="Password" />
+    <br />
+    <asp:TextBox ID="txtPassword" runat="server"
+        TextMode="Password" />
+    <br /><br />
+
+    <asp:Label ID="Label4" runat="server" Text="Confirm Password" />
+    <br />
+    <asp:TextBox ID="txtConfirm" runat="server"
+        TextMode="Password" />
+    <asp:CompareValidator ID="CompareValidator1"
+        runat="server" ControlToValidate="txtConfirm"
+        ControlToCompare="txtPassword" Operator="Equal"
+        Type="String" ErrorMessage="Passwords do not match."
+        ForeColor="Red" />
+    <br /><br />
+
+    <asp:Label ID="Label5" runat="server" Text="Email" />
+    <br />
+    <asp:TextBox ID="txtEmail" runat="server" />
+    <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+        runat="server" ControlToValidate="txtEmail"
+        ErrorMessage="Enter a valid Email."
+        ValidationExpression="\w+([-.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+        ForeColor="Red" />
+    <br /><br />
+
+    <asp:Label ID="Label6" runat="server"
+        Text="Custom Text (8 Characters)" />
+    <br />
+    <asp:TextBox ID="txtCustom" runat="server" />
+    <asp:CustomValidator ID="CustomValidator1"
+        runat="server" ControlToValidate="txtCustom"
+        ClientValidationFunction="ClientValidate"
+        OnServerValidate="ServerValidation"
+        ErrorMessage="Text must be exactly 8 characters."
+        ForeColor="Red" />
+    <br /><br />
+
+    <asp:Label ID="lbl1" runat="server" ForeColor="Green" />
+    <br />
+
+    <asp:Button ID="Button1" runat="server" Text="Validate"
+        OnClick="Button1_Click"
+        OnClientClick="return ValidateBtn_OnClick();" />
+
+    <br /><br />
+
+    <asp:ValidationSummary ID="ValidationSummary1"
+        runat="server" ForeColor="Red" />
+
+</div>
+</form>
+</body>
+</html>
+
+ //WebForm1.aspx.cs
+
+ 
+using System;
+
+namespace practical4a
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                lbl1.Text = "Thank You!";
+            }
+            else
+            {
+                lbl1.Text = "Please correct the errors.";
+            }
+        }
+
+        protected void ServerValidation(object source,
+            System.Web.UI.WebControls.ServerValidateEventArgs args)
+        {
+            if (args.Value.Length == 8)
+                args.IsValid = true;
+            else
+                args.IsValid = false;
+        }
+    }
+}
+
+
